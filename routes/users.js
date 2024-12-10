@@ -5,8 +5,6 @@ const {UserModel, userValid, loginValid, createToken} = require("../models/userM
 const {auth} = require("../middlewares/auth");
 const {verifyToken} = require("../middlewares/verifyToken");
 const {config} = require("../config/secret")
-// const { taskModel } = require("../models/taskModel");
-
 
 const router = express.Router();
 
@@ -62,8 +60,6 @@ router.post("/login", async (req, res) => {
     }
     
     let token = createToken(user._id);
-    // res.cookie('token', token, { httpOnly: true, sameSite: 'strict'});
-    // Utilisation de res.json() pour envoyer à la fois le message et le nom de l'utilisateur
     res.status(200).json({ msg: 'Login successful', token: token });
   } catch (err) {
     console.log(err);
