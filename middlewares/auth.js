@@ -8,8 +8,6 @@ exports.auth = (req,res,next) => {
   }
   try{
     let decodeToken = jwt.verify(token,config.tokenSecret);
-    // add to req , so the next function will recognize
-    // the tokenData/decodeToken
     req.tokenData = decodeToken;
     next();
   }
