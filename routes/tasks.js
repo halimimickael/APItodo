@@ -3,7 +3,6 @@ const { taskModel } = require("../models/taskModel");
 const {verifyToken} = require("../middlewares/verifyToken");
 const router = express.Router();
 
-
 router.get("/", verifyToken, async (req, res) => {
   try {
     let data = await taskModel.find({});
@@ -14,9 +13,7 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-
 router.post("/", async (req, res) => {
-  // req.body
   let task = new taskModel(req.body);
   await task.save();
   res.json(task);
@@ -25,7 +22,6 @@ router.post("/", async (req, res) => {
 router.delete("/:idDel",verifyToken, async (req, res) => {
   try {
     let data = await taskModel.deleteOne({ _id: req.params.idDel });
-    // deletedCount:1
     res.json(data);
   } catch (err) {
     console.log(err);
@@ -33,7 +29,6 @@ router.delete("/:idDel",verifyToken, async (req, res) => {
   }
 });
 
-// edit
 router.put("/:idEdit", async (req, res) => {
   try {
     let data = await taskModel.updateOne({ _id: req.params.idEdit }, req.body);
