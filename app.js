@@ -13,8 +13,6 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname,"public")))
 
-
-
 routesInit(app);
 
 const server = http.createServer(app);
